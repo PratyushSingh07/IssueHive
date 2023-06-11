@@ -1,5 +1,10 @@
 package com.example.findissues.api
 
+import com.example.findissues.models.Issues
+import com.example.findissues.utils.Constants
+import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -12,5 +17,6 @@ interface GithubApiService {
     fun getIssue(
         @Query("q") language: String,
         @Query("sort") sort: String
-    )
+    ): Call<Issues>
+
 }
