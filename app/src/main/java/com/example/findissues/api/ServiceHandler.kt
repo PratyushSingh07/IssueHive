@@ -1,6 +1,6 @@
-package com.example.findissues.utils
+package com.example.findissues.api
 
-import com.example.findissues.api.GithubApiService
+import com.example.findissues.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

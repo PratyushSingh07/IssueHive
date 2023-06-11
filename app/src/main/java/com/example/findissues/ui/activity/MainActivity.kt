@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import com.example.findissues.R
 import com.example.findissues.models.Issues
-import com.example.findissues.utils.ServiceHandler
+import com.example.findissues.utils.Constants
+import com.example.findissues.api.ServiceHandler
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getNews() {
-        val issues = ServiceHandler.apiService.getIssue("kotlin","created")
+        val issues = ServiceHandler.apiService.getIssue("kotlin",Constants.CREATED)
         issues.enqueue(object : Callback<Issues> {
             override fun onResponse(call: Call<Issues>, response: Response<Issues>) {
                 val news = response.body()
