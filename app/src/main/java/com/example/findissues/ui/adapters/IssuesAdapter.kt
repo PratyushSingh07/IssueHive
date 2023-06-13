@@ -18,8 +18,8 @@ class IssuesAdapter(
 
     private var issueList = ArrayList<IssuesList>()
 
-    fun setUpIssuesList(issuesList: List<IssuesList>) {
-        this.issueList = issueList as ArrayList<IssuesList>
+    fun setUpIssuesList(issueList: List<IssuesList>) {
+        this.issueList = issueList.toMutableList() as ArrayList<IssuesList>
         notifyDataSetChanged()
     }
 
