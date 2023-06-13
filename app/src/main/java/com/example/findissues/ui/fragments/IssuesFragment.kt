@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.findissues.api.ServiceHandler
 import com.example.findissues.databinding.FragmentIssuesBinding
+import com.example.findissues.repository.IssueRepository
 import com.example.findissues.ui.adapters.IssuesAdapter
+import com.example.findissues.viewmodels.IssueViewModelFactory
 import com.example.findissues.viewmodels.IssuesViewModel
 
 class IssuesFragment : Fragment() {
@@ -30,7 +33,7 @@ class IssuesFragment : Fragment() {
             layoutManager = LinearLayoutManager(context , LinearLayoutManager.VERTICAL, false)
             adapter = issueAdapter
         }
-        viewModel = ViewModelProvider(this)[IssuesViewModel::class.java]
+        viewModel = ViewModelProvider(this, IssueViewModelFactory(IssueRepository(ServiceHandler.apiService)))[IssuesViewModel::class.java]
         viewModel.getIssueLink()
         viewModel.observeIssueLiveData().observe(viewLifecycleOwner, Observer {
             issueAdapter.setUpIssuesList(it)

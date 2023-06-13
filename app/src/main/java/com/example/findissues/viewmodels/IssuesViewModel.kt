@@ -7,16 +7,19 @@ import androidx.lifecycle.ViewModel
 import com.example.findissues.api.ServiceHandler
 import com.example.findissues.models.Issues
 import com.example.findissues.models.IssuesList
+import com.example.findissues.repository.IssueRepository
 import com.example.findissues.utils.Constants.CREATED
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class IssuesViewModel : ViewModel() {
+class IssuesViewModel constructor(
+    private val repository: IssueRepository
+) : ViewModel() {
     private var issueLiveData = MutableLiveData<List<IssuesList>>()
 
     fun getIssueLink() {
-        ServiceHandler.apiService.getIssue("kotlin", CREATED).enqueue(object : Callback<Issues> {
+       repository.getAllIssues().enqueue(object : Callback<Issues> {
             override fun onResponse(call: Call<Issues>, response: Response<Issues>) {
                 if (response.body() != null) {
                      issueLiveData.value = response.body()?.items
