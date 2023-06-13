@@ -23,6 +23,7 @@ class PullsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPullsBinding.inflate(inflater, container, false)
+        binding.toolbar.root.title = resources.getString(R.string.pulls)
         return binding.root
     }
 

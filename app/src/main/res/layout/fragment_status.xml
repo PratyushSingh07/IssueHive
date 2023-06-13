@@ -3,7 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.StatusFragment">
+    tools:context=".ui.fragments.StatusFragment"
+    android:background="@color/github_bkg">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

@@ -1,24 +1,15 @@
 package com.example.findissues.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.findissues.R
-import com.example.findissues.models.Issues
-import com.example.findissues.utils.Constants
-import com.example.findissues.api.ServiceHandler
 import com.example.findissues.databinding.ActivityMainBinding
-import com.example.findissues.ui.adapters.IssuesAdapter
 import com.example.findissues.ui.fragments.HomeFragment
 import com.example.findissues.ui.fragments.IssuesFragment
 import com.example.findissues.ui.fragments.PullsFragment
 import com.example.findissues.ui.fragments.StatusFragment
-import com.ismaeldivita.chipnavigation.ChipNavigationBar
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,7 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        supportActionBar?.hide()
+//        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.github_bkg))
         val homeFragment = HomeFragment()
         val issuesFragment = IssuesFragment()
         val pullsFragment = PullsFragment()

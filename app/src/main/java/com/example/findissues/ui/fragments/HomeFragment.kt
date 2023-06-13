@@ -6,15 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.findissues.R
+import com.example.findissues.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
+
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding.toolbar.root.title = resources.getString(R.string.home)
+        return binding.root
 
-        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.findissues.R
 import com.example.findissues.api.ServiceHandler
 import com.example.findissues.databinding.FragmentIssuesBinding
 import com.example.findissues.repository.IssueRepository
@@ -28,6 +29,7 @@ class IssuesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentIssuesBinding.inflate(inflater, container, false)
+        binding.toolbar.root.title = resources.getString(R.string.issues)
         issueAdapter = context?.let { IssuesAdapter(it) }!!
         binding.rvIssues.apply {
             layoutManager = LinearLayoutManager(context , LinearLayoutManager.VERTICAL, false)
