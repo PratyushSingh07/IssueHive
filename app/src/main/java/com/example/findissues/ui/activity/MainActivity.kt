@@ -22,26 +22,25 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var adapter: IssuesAdapter
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        supportActionBar?.hide()
         setContentView(binding.root)
 
-        val homeFragmemt = HomeFragment()
+        val homeFragment = HomeFragment()
         val issuesFragment = IssuesFragment()
         val pullsFragment = PullsFragment()
         val statusFragment = StatusFragment()
 
-        setCurrentFragment(homeFragmemt)
+        setCurrentFragment(homeFragment)
 
         binding.bottomMenu.setItemSelected(R.id.home)
         binding.bottomMenu.setOnItemSelectedListener {
             when (it) {
                 R.id.home -> {
-                    setCurrentFragment(homeFragmemt)
+                    setCurrentFragment(homeFragment)
                 }
                 R.id.issues -> {
                     setCurrentFragment(issuesFragment)
