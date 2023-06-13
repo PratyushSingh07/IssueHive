@@ -24,6 +24,7 @@ class PullsFragment : Fragment() {
     ): View {
         _binding = FragmentPullsBinding.inflate(inflater, container, false)
         binding.toolbar.root.title = resources.getString(R.string.pulls)
+        binding.toolbar.root.inflateMenu(R.menu.menu_pulls)
         return binding.root
     }
 
@@ -48,6 +49,11 @@ class PullsFragment : Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
