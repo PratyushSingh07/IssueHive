@@ -1,8 +1,10 @@
 package com.example.findissues.api
 
 import com.example.findissues.models.Issues
+import com.example.findissues.models.User
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 
@@ -17,5 +19,10 @@ interface GithubApiService {
         @Query("q") language: String,
         @Query("sort") sort: String
     ): Call<Issues>
+
+    @GET("users/{username}")
+    fun getUser(
+        @Path("username") username: String
+    ): Call<User>
 
 }

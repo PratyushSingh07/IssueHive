@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.HomeFragment"
     android:background="@color/github_bkg">
 
@@ -18,7 +19,37 @@
             android:layout_below="@id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
 
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="96dp"
+                    android:src="@drawable/ic_launcher_background"
+                    android:layout_height="96dp"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#FF000000"/>
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_marginLeft="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="30dp"
+                    android:layout_toRightOf="@id/profile_image"
+                    android:text="aetfgwage"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/github_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:text="fgsgwsrg "
+                    android:textSize="18dp"
+                    android:layout_below="@id/name"
+                    android:layout_toRightOf="@id/profile_image"/>
+            </RelativeLayout>
         </RelativeLayout>
 </RelativeLayout>
 
