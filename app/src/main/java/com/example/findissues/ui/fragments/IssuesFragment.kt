@@ -31,6 +31,7 @@ class IssuesFragment : Fragment() {
         _binding = FragmentIssuesBinding.inflate(inflater, container, false)
         binding.toolbar.root.title = resources.getString(R.string.issues)
         issueAdapter = context?.let { IssuesAdapter(it) }!!
+        binding.progressBar.visibility = View.VISIBLE
         binding.rvIssues.apply {
             layoutManager = LinearLayoutManager(context , LinearLayoutManager.VERTICAL, false)
             adapter = issueAdapter
@@ -38,9 +39,15 @@ class IssuesFragment : Fragment() {
         viewModel = ViewModelProvider(this, IssueViewModelFactory(IssueRepository(ServiceHandler.apiService)))[IssuesViewModel::class.java]
         viewModel.getIssueLink()
         viewModel.observeIssueLiveData().observe(viewLifecycleOwner, Observer {
+            binding.progressBar.visibility = View.GONE
             issueAdapter.setUpIssuesList(it)
         })
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
