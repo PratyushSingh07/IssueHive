@@ -18,7 +18,7 @@ class IssuesViewModel constructor(
 ) : ViewModel() {
     private var issueLiveData = MutableLiveData<List<IssuesList>>()
 
-    fun getIssueLink() {
+    suspend fun getIssueLink() {
        repository.getAllIssues().enqueue(object : Callback<Issues> {
             override fun onResponse(call: Call<Issues>, response: Response<Issues>) {
                 if (response.body() != null) {

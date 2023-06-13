@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.findissues.R
 import com.example.findissues.api.ServiceHandler
@@ -15,6 +16,9 @@ import com.example.findissues.repository.IssueRepository
 import com.example.findissues.ui.adapters.IssuesAdapter
 import com.example.findissues.viewmodels.IssueViewModelFactory
 import com.example.findissues.viewmodels.IssuesViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class IssuesFragment : Fragment() {
 
@@ -37,7 +41,12 @@ class IssuesFragment : Fragment() {
             adapter = issueAdapter
         }
         viewModel = ViewModelProvider(this, IssueViewModelFactory(IssueRepository(ServiceHandler.apiService)))[IssuesViewModel::class.java]
-        viewModel.getIssueLink()
+        lifecycleScope.launch {
+            binding.progressBar.visibility = View.VISIBLE
+            withContext(Dispatchers.IO) {
+                viewModel.getIssueLink()
+            }
+        }
         viewModel.observeIssueLiveData().observe(viewLifecycleOwner, Observer {
             binding.progressBar.visibility = View.GONE
             issueAdapter.setUpIssuesList(it)
