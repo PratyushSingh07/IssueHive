@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.findissues"
-        minSdk 21
+        minSdk 23
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -49,4 +49,23 @@ dependencies {
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // Chip Navigationz
+    implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
+
+    // NavHost
+    implementation "androidx.navigation:navigation-fragment:2.3.0"
+    implementation "androidx.navigation:navigation-ui:2.3.0"
+
+    // Coroutines
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+
+    // CircularImage View
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/open"
+        app:showAsAction="never"
+        android:title="Open"/>
+    <item
+        android:id="@+id/merged"
+        app:showAsAction="never"
+        android:title="Merged"/>
+    <item
+        android:id="@+id/close"
+        app:showAsAction="never"
+        android:title="Closed"/>
+</menu>

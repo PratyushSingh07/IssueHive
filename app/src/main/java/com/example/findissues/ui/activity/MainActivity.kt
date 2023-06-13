@@ -1,37 +1,58 @@
 package com.example.findissues.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.findissues.R
-import com.example.findissues.models.Issues
-import com.example.findissues.utils.Constants
-import com.example.findissues.api.ServiceHandler
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.findissues.databinding.ActivityMainBinding
+import com.example.findissues.ui.fragments.HomeFragment
+import com.example.findissues.ui.fragments.IssuesFragment
+import com.example.findissues.ui.fragments.PullsFragment
+import com.example.findissues.ui.fragments.StatusFragment
+
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        getNews()
-    }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        supportActionBar?.hide()
+//        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.github_bkg))
+        val homeFragment = HomeFragment()
+        val issuesFragment = IssuesFragment()
+        val pullsFragment = PullsFragment()
+        val statusFragment = StatusFragment()
 
-    private fun getNews() {
-        val issues = ServiceHandler.apiService.getIssue("kotlin",Constants.CREATED)
-        issues.enqueue(object : Callback<Issues> {
-            override fun onResponse(call: Call<Issues>, response: Response<Issues>) {
-                val news = response.body()
-                if(news!=null){
-                    Log.d("RESPONSE",news.toString())
+        setCurrentFragment(homeFragment)
+
+        binding.bottomMenu.setItemSelected(R.id.home)
+        binding.bottomMenu.setOnItemSelectedListener {
+            when (it) {
+                R.id.home -> {
+                    setCurrentFragment(homeFragment)
+                }
+                R.id.issues -> {
+                    setCurrentFragment(issuesFragment)
+                }
+                R.id.pulls -> {
+                    setCurrentFragment(pullsFragment)
+                }
+                R.id.status -> {
+                    setCurrentFragment(statusFragment)
                 }
             }
 
-            override fun onFailure(call: Call<Issues>, t: Throwable) {
-                Log.d("ERROR", "Error in fetching news")
-            }
+        }
 
-        })
     }
+
+    private fun setCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.nav_host_fragment_activity_dashboard, fragment)
+            commitNow()
+        }
+
 }
