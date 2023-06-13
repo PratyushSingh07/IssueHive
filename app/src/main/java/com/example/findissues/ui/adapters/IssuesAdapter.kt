@@ -14,8 +14,14 @@ import com.example.findissues.models.IssuesList
 
 class IssuesAdapter(
     val context: Context,
-    private val issues: List<IssuesList>,
 ): RecyclerView.Adapter<IssuesAdapter.IssuesViewHolder>() {
+
+    private var issueList = ArrayList<IssuesList>()
+
+    fun setUpIssuesList(issuesList: List<IssuesList>) {
+        this.issueList = issueList as ArrayList<IssuesList>
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IssuesViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_issue, parent, false)
@@ -23,7 +29,7 @@ class IssuesAdapter(
     }
 
     override fun onBindViewHolder(holder: IssuesViewHolder, position: Int) {
-        val issue = issues[position]
+        val issue = issueList[position]
         holder.link.text = issue.html_url
         holder.link.setOnClickListener {
             Toast.makeText(context,"clicked",Toast.LENGTH_SHORT).show()
@@ -34,7 +40,7 @@ class IssuesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return issues.size
+        return issueList.size
     }
 
     inner class IssuesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
