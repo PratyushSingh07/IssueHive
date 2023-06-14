@@ -214,7 +214,32 @@
             android:layout_below="@+id/rl_top"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
+            <RelativeLayout
+                android:id="@+id/rl_pinned"
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv_pinned"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    app:tint="@color/white"
+                    android:src="@drawable/pinned"/>
+                <TextView
+                    android:id="@+id/tv_pinned"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Pinned"
+                    android:layout_toRightOf="@id/iv_pinned"
+                    android:textSize="20dp"/>
+            </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_pinned"
+                android:layout_below="@id/rl_pinned"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </RelativeLayout>
 </RelativeLayout>
 

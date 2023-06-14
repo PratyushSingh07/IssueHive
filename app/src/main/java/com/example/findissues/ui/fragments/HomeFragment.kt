@@ -18,6 +18,7 @@ import com.example.findissues.repository.UserRepository
 import com.example.findissues.utils.Constants.FOLLOWERS
 import com.example.findissues.utils.Constants.FOLLOWING
 import com.example.findissues.utils.Constants.TWITTER_BASE_URL
+import com.example.findissues.viewmodels.PinnedRepoViewModel
 import com.example.findissues.viewmodels.UserViewModel
 import com.example.findissues.viewmodels.UserViewModelFactory
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +31,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: UserViewModel
+    private lateinit var pinnedRepoViewModel: PinnedRepoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
