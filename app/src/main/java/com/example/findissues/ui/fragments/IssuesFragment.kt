@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.findissues.R
 import com.example.findissues.api.ServiceHandler
 import com.example.findissues.databinding.FragmentIssuesBinding
-import com.example.findissues.repository.IssueRepository
+import com.example.findissues.repository.DataRepository
 import com.example.findissues.ui.adapters.IssuesAdapter
-import com.example.findissues.viewmodels.IssueViewModelFactory
+import com.example.findissues.viewmodels.factory.IssueViewModelFactory
 import com.example.findissues.viewmodels.IssuesViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,7 +40,7 @@ class IssuesFragment : Fragment() {
             layoutManager = LinearLayoutManager(context , LinearLayoutManager.VERTICAL, false)
             adapter = issueAdapter
         }
-        viewModel = ViewModelProvider(this, IssueViewModelFactory(IssueRepository(ServiceHandler.apiService)))[IssuesViewModel::class.java]
+        viewModel = ViewModelProvider(this, IssueViewModelFactory(DataRepository(ServiceHandler.apiService)))[IssuesViewModel::class.java]
         lifecycleScope.launch {
             binding.progressBar.visibility = View.VISIBLE
             withContext(Dispatchers.IO) {

@@ -5,14 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.findissues.models.PinnedRepo
-import com.example.findissues.models.User
-import com.example.findissues.repository.PinnedRepository
+import com.example.findissues.repository.DataRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class PinnedRepoViewModel constructor(
-    private val repository: PinnedRepository
+    private val repository: DataRepository
 ) : ViewModel() {
     private var pinnedRepoLiveData = MutableLiveData<PinnedRepo>()
 

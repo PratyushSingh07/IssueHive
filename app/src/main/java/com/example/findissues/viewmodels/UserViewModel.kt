@@ -4,15 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.findissues.models.IssuesList
 import com.example.findissues.models.User
-import com.example.findissues.repository.UserRepository
+import com.example.findissues.repository.DataRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class UserViewModel constructor(
-    private val repository: UserRepository
+    private val repository: DataRepository
 ) : ViewModel() {
     private var userLiveData = MutableLiveData<User>()
 
@@ -31,7 +30,7 @@ class UserViewModel constructor(
         })
     }
 
-    fun observeIssueLiveData(): LiveData<User> {
+    fun observeUserLiveData(): LiveData<User> {
         return userLiveData
     }
 }
