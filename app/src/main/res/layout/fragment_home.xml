@@ -225,15 +225,16 @@
                     android:layout_height="23dp"
                     app:tint="@color/white"
                     android:src="@drawable/pinned"/>
+
                 <TextView
                     android:id="@+id/tv_pinned"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Pinned"
+                    android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@id/iv_pinned"
-                    android:textSize="20dp"/>
+                    android:text="Pinned"
+                    android:textSize="20dp" />
             </RelativeLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_pinned"

@@ -29,7 +29,7 @@ class PinnedRepoViewModel constructor(
         })
     }
 
-    fun observeLiveData(): LiveData<PinnedRepo> {
+    fun observePinnedRepoLiveData(): LiveData<PinnedRepo> {
         return pinnedRepoLiveData
     }
 }

@@ -7,18 +7,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.findissues.R
 import com.example.findissues.api.ServiceHandler
 import com.example.findissues.databinding.FragmentHomeBinding
+import com.example.findissues.repository.PinnedRepository
 import com.example.findissues.repository.UserRepository
+import com.example.findissues.ui.adapters.IssuesAdapter
+import com.example.findissues.ui.adapters.PinnedRepoAdapter
 import com.example.findissues.utils.Constants.FOLLOWERS
 import com.example.findissues.utils.Constants.FOLLOWING
 import com.example.findissues.utils.Constants.TWITTER_BASE_URL
 import com.example.findissues.viewmodels.PinnedRepoViewModel
+import com.example.findissues.viewmodels.PinnedRepoViewModelFactory
 import com.example.findissues.viewmodels.UserViewModel
 import com.example.findissues.viewmodels.UserViewModelFactory
 import kotlinx.coroutines.Dispatchers
@@ -33,16 +39,29 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel: UserViewModel
     private lateinit var pinnedRepoViewModel: PinnedRepoViewModel
 
+    private lateinit var pinnedRepoAdapter: PinnedRepoAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.toolbar.root.title = resources.getString(R.string.home)
+        pinnedRepoAdapter = context?.let { PinnedRepoAdapter(it) }!!
+        binding.rvPinned.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = pinnedRepoAdapter
+        }
         viewModel = ViewModelProvider(
             this,
             UserViewModelFactory(UserRepository(ServiceHandler.apiService))
         )[UserViewModel::class.java]
+
+        pinnedRepoViewModel = ViewModelProvider(
+            this,
+            PinnedRepoViewModelFactory(PinnedRepository(ServiceHandler.pinnedRepoService))
+        )[PinnedRepoViewModel::class.java]
+
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 viewModel.getUserDetail()
@@ -65,6 +84,18 @@ class HomeFragment : Fragment() {
             binding.tvFollowers.text = it.followers.toString() + " " + FOLLOWERS
             binding.tvFollowing.text = it.following.toString() + " " + FOLLOWING
         })
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                pinnedRepoViewModel.getPinnedRepos()
+            }
+        }
+
+        pinnedRepoViewModel.observePinnedRepoLiveData().observe(viewLifecycleOwner) {
+//            binding.progressBar.visibility = View.GONE
+            pinnedRepoAdapter.setUpPinnedRepoList(listOf(it))
+        }
+
         return binding.root
 
     }
