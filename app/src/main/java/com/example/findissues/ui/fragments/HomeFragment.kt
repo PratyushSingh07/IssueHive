@@ -23,6 +23,7 @@ import com.example.findissues.ui.adapters.PinnedRepoAdapter
 import com.example.findissues.utils.Constants.FOLLOWERS
 import com.example.findissues.utils.Constants.FOLLOWING
 import com.example.findissues.utils.Constants.TWITTER_BASE_URL
+import com.example.findissues.utils.GlideLoader
 import com.example.findissues.viewmodels.PinnedRepoViewModel
 import com.example.findissues.viewmodels.PinnedRepoViewModelFactory
 import com.example.findissues.viewmodels.UserViewModel
@@ -70,9 +71,8 @@ class HomeFragment : Fragment() {
         viewModel.observeIssueLiveData().observe(viewLifecycleOwner, Observer {
             binding.name.text = it.name
             binding.githubUsername.text = it.login
-            Glide.with(requireContext())
-                .load(it.avatar_url)
-                .into(binding.profileImage)
+            val glideLoader = GlideLoader(requireContext())
+            glideLoader.loadCircularImage(it.avatar_url, binding.profileImage)
             binding.bio.text = it.bio.replace("\n", "")
             binding.tvCompany.text = it.company
             binding.tvLocation.text = it.location

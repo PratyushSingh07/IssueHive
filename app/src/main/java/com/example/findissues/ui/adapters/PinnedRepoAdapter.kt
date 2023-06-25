@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.findissues.R
 import com.example.findissues.models.IssuesList
 import com.example.findissues.models.PinnedRepo
+import com.example.findissues.utils.GlideLoader
 
 class PinnedRepoAdapter(
     val context: Context
@@ -41,9 +42,8 @@ class PinnedRepoAdapter(
     override fun onBindViewHolder(holder: PinnedRepoAdapter.PinnedRepoViewHolder, position: Int) {
         val pinnedRepo = pinnedRepoList[position]
         holder.language.text = pinnedRepo.language
-        Glide.with(context)
-            .load(pinnedRepo.image)
-            .into(holder.image)
+        val glideLoader = GlideLoader(context)
+        glideLoader.loadImage(pinnedRepo.image, holder.image)
     }
 
     override fun getItemCount(): Int {
