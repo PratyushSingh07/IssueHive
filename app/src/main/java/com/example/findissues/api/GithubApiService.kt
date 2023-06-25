@@ -1,6 +1,7 @@
 package com.example.findissues.api
 
 import com.example.findissues.models.Issues
+import com.example.findissues.models.PinnedRepo
 import com.example.findissues.models.User
 import retrofit2.Call
 import retrofit2.http.GET
@@ -24,5 +25,10 @@ interface GithubApiService {
     fun getUser(
         @Path("username") username: String
     ): Call<User>
+
+    @GET("/username={username}")
+    fun getPinnedRepos(
+        @Path("username") username: String
+    ): Call<PinnedRepo>
 
 }
