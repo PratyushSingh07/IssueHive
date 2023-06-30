@@ -240,11 +240,64 @@
                 android:id="@+id/rv_pinned"
                 android:layout_below="@id/rl_pinned"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_repository"
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rv_pinned">
+                <ImageView
+                    android:id="@+id/iv_repository"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:tint="@color/white"
+                    android:src="@drawable/repo"/>
+
+                <TextView
+                    android:id="@+id/tv_repositories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="5"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5"
+                    android:layout_marginEnd="5"
+                    android:layout_marginBottom="5"
+                    android:layout_toRightOf="@id/iv_repository"
+                    android:text="Repositories"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_organization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_repository"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_organization"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/star"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/tv_organization"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/iv_organization"
+                    android:text="Starred"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </RelativeLayout>
         </RelativeLayout>
 </RelativeLayout>
-
-
-
-
 </FrameLayout>
