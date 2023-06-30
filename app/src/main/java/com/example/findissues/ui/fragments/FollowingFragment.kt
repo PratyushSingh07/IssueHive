@@ -8,16 +8,15 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.findissues.api.ServiceHandler
 import com.example.findissues.databinding.FragmentFollowingBinding
-import com.example.findissues.repository.DataRepository
 import com.example.findissues.ui.adapters.FollowingAdapter
-import com.example.findissues.viewmodels.factory.FollowingViewModel
-import com.example.findissues.viewmodels.factory.FollowingViewModelFactory
+import com.example.findissues.viewmodels.FollowingViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+@AndroidEntryPoint
 class FollowingFragment : Fragment() {
 
     private var _binding: FragmentFollowingBinding? = null
@@ -37,8 +36,7 @@ class FollowingFragment : Fragment() {
             adapter = followingAdapter
         }
         followingViewModel = ViewModelProvider(
-            this,
-            FollowingViewModelFactory(DataRepository(ServiceHandler.apiService))
+            this
         )[FollowingViewModel::class.java]
 
         lifecycleScope.launch {

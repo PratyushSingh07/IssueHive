@@ -1,4 +1,4 @@
-package com.example.findissues.viewmodels.factory
+package com.example.findissues.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,11 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.findissues.models.Following
 import com.example.findissues.repository.DataRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class FollowingViewModel(
+@HiltViewModel
+class FollowingViewModel @Inject constructor(
     private val repository: DataRepository
 ) : ViewModel() {
 

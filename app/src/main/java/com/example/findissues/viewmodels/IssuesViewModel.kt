@@ -7,11 +7,14 @@ import androidx.lifecycle.ViewModel
 import com.example.findissues.models.Issues
 import com.example.findissues.models.IssuesList
 import com.example.findissues.repository.DataRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class IssuesViewModel constructor(
+@HiltViewModel
+class IssuesViewModel @Inject constructor(
     private val repository: DataRepository
 ) : ViewModel() {
     private var issueLiveData = MutableLiveData<List<IssuesList>>()
