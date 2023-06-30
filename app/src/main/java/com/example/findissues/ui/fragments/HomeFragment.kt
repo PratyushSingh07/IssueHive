@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -23,7 +22,6 @@ import com.example.findissues.utils.GlideLoader
 import com.example.findissues.viewmodels.PinnedRepoViewModel
 import com.example.findissues.viewmodels.factory.PinnedRepoViewModelFactory
 import com.example.findissues.viewmodels.UserViewModel
-import com.example.findissues.viewmodels.factory.UserViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

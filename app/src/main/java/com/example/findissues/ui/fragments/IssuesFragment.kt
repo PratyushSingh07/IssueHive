@@ -10,11 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.findissues.R
-import com.example.findissues.api.ServiceHandler
 import com.example.findissues.databinding.FragmentIssuesBinding
-import com.example.findissues.repository.DataRepository
 import com.example.findissues.ui.adapters.IssuesAdapter
-import com.example.findissues.viewmodels.factory.IssueViewModelFactory
 import com.example.findissues.viewmodels.IssuesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers

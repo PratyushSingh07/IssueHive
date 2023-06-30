@@ -8,12 +8,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.findissues.api.ServiceHandler
 import com.example.findissues.databinding.FragmentFollowingBinding
-import com.example.findissues.repository.DataRepository
 import com.example.findissues.ui.adapters.FollowingAdapter
 import com.example.findissues.viewmodels.FollowingViewModel
-import com.example.findissues.viewmodels.factory.FollowingViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
