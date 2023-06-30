@@ -1,9 +1,6 @@
 package com.example.findissues.ui.fragments
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -90,29 +87,15 @@ class HomeFragment : Fragment() {
         }
 
         pinnedRepoViewModel.observePinnedRepoLiveData().observe(viewLifecycleOwner) {
-//            binding.progressBar.visibility = View.GONE
             pinnedRepoAdapter.setUpPinnedRepoList(it)
         }
 
         binding.tvFollowers.setOnClickListener {
-            Toast.makeText(activity,"followers",Toast.LENGTH_SHORT).show()
-            val fragment = FollowersFragment() // Create an instance of the second fragment
-            val fragmentManager = requireActivity().supportFragmentManager // Get the fragment manager
-            val fragmentTransaction = fragmentManager.beginTransaction() // Start a new fragment transaction
-            fragmentTransaction.replace(R.id.nav_host_fragment_activity_dashboard, fragment) // Replace the current fragment with the second fragment
-            fragmentTransaction.addToBackStack(null) // Add the transaction to the back stack
-            fragmentTransaction.commit() // Commit the transaction
-
+            setUpFragment(FollowersFragment())
         }
 
         binding.tvFollowing.setOnClickListener {
-            Toast.makeText(activity,"following",Toast.LENGTH_SHORT).show()
-            val fragment = FollowingFragment() // Create an instance of the second fragment
-            val fragmentManager = requireActivity().supportFragmentManager // Get the fragment manager
-            val fragmentTransaction = fragmentManager.beginTransaction() // Start a new fragment transaction
-            fragmentTransaction.replace(R.id.nav_host_fragment_activity_dashboard, fragment) // Replace the current fragment with the second fragment
-            fragmentTransaction.addToBackStack(null) // Add the transaction to the back stack
-            fragmentTransaction.commit() // Commit the transaction
+            setUpFragment(FollowingFragment())
         }
 
         return binding.root
@@ -121,6 +104,15 @@ class HomeFragment : Fragment() {
 
     private fun goToTwitter(): String {
         return TWITTER_BASE_URL + binding.tvTwitter.text.toString()
+    }
+
+    private fun setUpFragment(fragment: Fragment) {
+        val fragment = fragment
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.nav_host_fragment_activity_dashboard, fragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 
     override fun onDestroyView() {
