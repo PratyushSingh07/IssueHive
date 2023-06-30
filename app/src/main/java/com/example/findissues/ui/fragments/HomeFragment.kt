@@ -105,6 +105,16 @@ class HomeFragment : Fragment() {
 
         }
 
+        binding.tvFollowing.setOnClickListener {
+            Toast.makeText(activity,"following",Toast.LENGTH_SHORT).show()
+            val fragment = FollowingFragment() // Create an instance of the second fragment
+            val fragmentManager = requireActivity().supportFragmentManager // Get the fragment manager
+            val fragmentTransaction = fragmentManager.beginTransaction() // Start a new fragment transaction
+            fragmentTransaction.replace(R.id.nav_host_fragment_activity_dashboard, fragment) // Replace the current fragment with the second fragment
+            fragmentTransaction.addToBackStack(null) // Add the transaction to the back stack
+            fragmentTransaction.commit() // Commit the transaction
+        }
+
         return binding.root
 
     }

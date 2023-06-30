@@ -1,9 +1,6 @@
 package com.example.findissues.api
 
-import com.example.findissues.models.Followers
-import com.example.findissues.models.Issues
-import com.example.findissues.models.PinnedRepo
-import com.example.findissues.models.User
+import com.example.findissues.models.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -38,5 +35,10 @@ interface GithubApiService {
     fun getFollowers(
         @Path("username") username: String
     ): Call<List<Followers>>
+
+    @GET("/users/{username}/following")
+    fun getFollowings(
+        @Path("username") username: String
+    ): Call<List<Following>>
 
 }
