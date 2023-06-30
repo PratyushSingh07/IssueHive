@@ -16,6 +16,7 @@ import com.example.findissues.api.ServiceHandler
 import com.example.findissues.databinding.FragmentHomeBinding
 import com.example.findissues.repository.DataRepository
 import com.example.findissues.ui.adapters.PinnedRepoAdapter
+import com.example.findissues.utils.Browser
 import com.example.findissues.utils.Constants.FOLLOWERS
 import com.example.findissues.utils.Constants.FOLLOWING
 import com.example.findissues.utils.Constants.TWITTER_BASE_URL
@@ -74,8 +75,7 @@ class HomeFragment : Fragment() {
             binding.tvLocation.text = it.location
             binding.tvTwitter.text = it.twitter_username
             binding.tvTwitter.setOnClickListener {
-                val browserIntent: Intent = Intent(Intent.ACTION_VIEW, Uri.parse(goToTwitter()))
-                context?.startActivity(browserIntent)
+                Browser(requireContext()).launch(goToTwitter())
             }
             binding.tvFollowers.text = it.followers.toString() + " " + FOLLOWERS
             binding.tvFollowing.text = it.following.toString() + " " + FOLLOWING

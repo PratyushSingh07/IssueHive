@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.example.findissues.R
 import com.example.findissues.models.IssuesList
 import com.example.findissues.models.PinnedRepo
+import com.example.findissues.utils.Browser
 import com.example.findissues.utils.GlideLoader
 
 class PinnedRepoAdapter(
@@ -47,8 +48,7 @@ class PinnedRepoAdapter(
         val glideLoader = GlideLoader(context)
         glideLoader.loadImage(pinnedRepo.image, holder.image)
         holder.image.setOnClickListener {
-            val browserIntent: Intent = Intent(Intent.ACTION_VIEW, Uri.parse(pinnedRepo.link))
-            context.startActivity(browserIntent)
+            Browser(context).launch(pinnedRepo.link)
         }
     }
 
