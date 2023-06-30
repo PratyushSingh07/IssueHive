@@ -3,6 +3,7 @@ package com.example.findissues.viewmodels.factory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.findissues.repository.DataRepository
+import com.example.findissues.viewmodels.FollowingViewModel
 
 class FollowingViewModelFactory constructor(private val repository: DataRepository) :
     ViewModelProvider.Factory {

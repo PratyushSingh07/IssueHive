@@ -16,10 +16,12 @@ import com.example.findissues.repository.DataRepository
 import com.example.findissues.ui.adapters.IssuesAdapter
 import com.example.findissues.viewmodels.factory.IssueViewModelFactory
 import com.example.findissues.viewmodels.IssuesViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+@AndroidEntryPoint
 class IssuesFragment : Fragment() {
 
     private var _binding: FragmentIssuesBinding? = null
@@ -40,7 +42,7 @@ class IssuesFragment : Fragment() {
             layoutManager = LinearLayoutManager(context , LinearLayoutManager.VERTICAL, false)
             adapter = issueAdapter
         }
-        viewModel = ViewModelProvider(this, IssueViewModelFactory(DataRepository(ServiceHandler.apiService)))[IssuesViewModel::class.java]
+        viewModel = ViewModelProvider(this)[IssuesViewModel::class.java]
         lifecycleScope.launch {
             binding.progressBar.visibility = View.VISIBLE
             withContext(Dispatchers.IO) {
