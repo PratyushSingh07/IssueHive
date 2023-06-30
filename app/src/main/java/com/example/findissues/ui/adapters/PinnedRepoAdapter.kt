@@ -1,7 +1,9 @@
 package com.example.findissues.ui.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.media.Image
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +46,10 @@ class PinnedRepoAdapter(
         holder.language.text = pinnedRepo.language
         val glideLoader = GlideLoader(context)
         glideLoader.loadImage(pinnedRepo.image, holder.image)
+        holder.image.setOnClickListener {
+            val browserIntent: Intent = Intent(Intent.ACTION_VIEW, Uri.parse(pinnedRepo.link))
+            context.startActivity(browserIntent)
+        }
     }
 
     override fun getItemCount(): Int {
