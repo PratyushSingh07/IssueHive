@@ -26,6 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -36,7 +37,8 @@ class HomeFragment : Fragment() {
     private lateinit var userViewModel: UserViewModel
     private lateinit var pinnedRepoViewModel: PinnedRepoViewModel
 
-    private lateinit var pinnedRepoAdapter: PinnedRepoAdapter
+    @Inject
+    lateinit var pinnedRepoAdapter: PinnedRepoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,14 +46,11 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.toolbar.root.title = resources.getString(R.string.home)
-        pinnedRepoAdapter = context?.let { PinnedRepoAdapter(it) }!!
         binding.rvPinned.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = pinnedRepoAdapter
         }
-        userViewModel = ViewModelProvider(
-            this
-        )[UserViewModel::class.java]
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         pinnedRepoViewModel = ViewModelProvider(
             this,

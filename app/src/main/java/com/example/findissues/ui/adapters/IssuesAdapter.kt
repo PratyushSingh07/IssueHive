@@ -11,9 +11,11 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findissues.R
 import com.example.findissues.models.IssuesList
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class IssuesAdapter(
-    val context: Context,
+class IssuesAdapter @Inject constructor(
+    @ApplicationContext val context: Context,
 ): RecyclerView.Adapter<IssuesAdapter.IssuesViewHolder>() {
 
     private var issueList = ArrayList<IssuesList>()

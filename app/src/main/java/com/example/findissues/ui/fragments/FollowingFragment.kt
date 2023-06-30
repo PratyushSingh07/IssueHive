@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class FollowingFragment : Fragment() {
@@ -23,21 +24,20 @@ class FollowingFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var followingViewModel: FollowingViewModel
-    private lateinit var followingAdapter: FollowingAdapter
+
+    @Inject
+    lateinit var followingAdapter: FollowingAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentFollowingBinding.inflate(inflater, container, false)
-        followingAdapter = context?.let { FollowingAdapter(it) }!!
         binding.rvFollowing.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = followingAdapter
         }
-        followingViewModel = ViewModelProvider(
-            this
-        )[FollowingViewModel::class.java]
+        followingViewModel = ViewModelProvider(this)[FollowingViewModel::class.java]
 
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {

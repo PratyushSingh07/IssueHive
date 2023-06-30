@@ -17,9 +17,11 @@ import com.example.findissues.models.IssuesList
 import com.example.findissues.models.PinnedRepo
 import com.example.findissues.utils.Browser
 import com.example.findissues.utils.GlideLoader
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class PinnedRepoAdapter(
-    val context: Context
+class PinnedRepoAdapter @Inject constructor(
+    @ApplicationContext val context: Context
 ) : RecyclerView.Adapter<PinnedRepoAdapter.PinnedRepoViewHolder>() {
 
     private var pinnedRepoList = ArrayList<PinnedRepo>()

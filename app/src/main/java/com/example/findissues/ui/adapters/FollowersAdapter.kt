@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.findissues.R
 import com.example.findissues.models.Followers
 import com.example.findissues.utils.GlideLoader
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class FollowersAdapter(
-    private val context: Context
+class FollowersAdapter @Inject constructor(
+    @ApplicationContext private val context: Context
 ) : RecyclerView.Adapter<FollowersAdapter.FollowersViewHolder>() {
 
     private var followersList = ArrayList<Followers>()
