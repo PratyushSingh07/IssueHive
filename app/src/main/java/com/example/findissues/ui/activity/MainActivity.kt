@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
-//        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.color.github_bkg))
         val homeFragment = HomeFragment()
         val issuesFragment = IssuesFragment()
         val pullsFragment = PullsFragment()
