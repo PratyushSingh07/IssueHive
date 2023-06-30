@@ -89,7 +89,7 @@ class HomeFragment : Fragment() {
 
         pinnedRepoViewModel.observePinnedRepoLiveData().observe(viewLifecycleOwner) {
 //            binding.progressBar.visibility = View.GONE
-            pinnedRepoAdapter.setUpPinnedRepoList(listOf(it))
+            pinnedRepoAdapter.setUpPinnedRepoList(it)
         }
 
         return binding.root

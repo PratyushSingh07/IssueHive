@@ -13,22 +13,22 @@ import retrofit2.Response
 class PinnedRepoViewModel constructor(
     private val repository: DataRepository
 ) : ViewModel() {
-    private var pinnedRepoLiveData = MutableLiveData<PinnedRepo>()
+    private var pinnedRepoLiveData = MutableLiveData<List<PinnedRepo>>()
 
     suspend fun getPinnedRepos() {
-        repository.getPinnedRepos().enqueue(object : Callback<PinnedRepo> {
-            override fun onResponse(call: Call<PinnedRepo>, response: Response<PinnedRepo>) {
+        repository.getPinnedRepos().enqueue(object : Callback<List<PinnedRepo>> {
+            override fun onResponse(call: Call<List<PinnedRepo>>, response: Response<List<PinnedRepo>>) {
                 pinnedRepoLiveData.value = response.body()
-             }
+            }
 
-            override fun onFailure(call: Call<PinnedRepo>, t: Throwable) {
-                Log.d("failure","failure in PinnedRepoViewModel")
+            override fun onFailure(call: Call<List<PinnedRepo>>, t: Throwable) {
+                Log.e("failure",t.toString())
             }
 
         })
     }
 
-    fun observePinnedRepoLiveData(): LiveData<PinnedRepo> {
+    fun observePinnedRepoLiveData(): LiveData<List<PinnedRepo>> {
         return pinnedRepoLiveData
     }
 }
