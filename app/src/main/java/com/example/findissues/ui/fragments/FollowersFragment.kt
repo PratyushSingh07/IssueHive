@@ -14,10 +14,12 @@ import com.example.findissues.repository.DataRepository
 import com.example.findissues.ui.adapters.FollowersAdapter
 import com.example.findissues.viewmodels.FollowersViewModel
 import com.example.findissues.viewmodels.factory.FollowersViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+@AndroidEntryPoint
 class FollowersFragment : Fragment() {
 
     private var _binding: FragmentFollowersBinding? = null
@@ -37,8 +39,7 @@ class FollowersFragment : Fragment() {
             adapter = followersAdapter
         }
         followersViewModel = ViewModelProvider(
-            this,
-            FollowersViewModelFactory(DataRepository(ServiceHandler.apiService))
+            this
         )[FollowersViewModel::class.java]
 
 

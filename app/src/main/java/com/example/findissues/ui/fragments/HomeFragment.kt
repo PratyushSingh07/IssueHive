@@ -24,10 +24,12 @@ import com.example.findissues.viewmodels.PinnedRepoViewModel
 import com.example.findissues.viewmodels.factory.PinnedRepoViewModelFactory
 import com.example.findissues.viewmodels.UserViewModel
 import com.example.findissues.viewmodels.factory.UserViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -50,8 +52,7 @@ class HomeFragment : Fragment() {
             adapter = pinnedRepoAdapter
         }
         userViewModel = ViewModelProvider(
-            this,
-            UserViewModelFactory(DataRepository(ServiceHandler.apiService))
+            this
         )[UserViewModel::class.java]
 
         pinnedRepoViewModel = ViewModelProvider(

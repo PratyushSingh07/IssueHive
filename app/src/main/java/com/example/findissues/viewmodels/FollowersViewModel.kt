@@ -6,11 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.findissues.models.Followers
 import com.example.findissues.repository.DataRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class FollowersViewModel(
+@HiltViewModel
+class FollowersViewModel @Inject constructor(
     private val repository: DataRepository
 ) : ViewModel() {
     private var followersLiveData = MutableLiveData<List<Followers>>()

@@ -9,8 +9,9 @@ import com.example.findissues.ui.fragments.HomeFragment
 import com.example.findissues.ui.fragments.IssuesFragment
 import com.example.findissues.ui.fragments.PullsFragment
 import com.example.findissues.ui.fragments.StatusFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
