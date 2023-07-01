@@ -43,4 +43,9 @@ interface GithubApiService {
         @Path("username") username: String
     ): Call<List<Following>>
 
+    @GET("/users/{username}/repos")
+    fun getRepos(
+        @Path("username") username: String
+    ): Call<List<Repository>>
+
 }

@@ -10,4 +10,5 @@ class DataRepository @Inject constructor(private val service: GithubApiService) 
     suspend fun getUser() = service.getUser("pratyushsingh07")
     suspend fun getFollowers() = service.getFollowers("pratyushsingh07")
     suspend fun getFollowing() = service.getFollowings("pratyushsingh07")
+    suspend fun getRepos() = service.getRepos("pratyushsingh07")
 }
