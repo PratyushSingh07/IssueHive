@@ -26,6 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -36,7 +37,8 @@ class HomeFragment : Fragment() {
     private lateinit var userViewModel: UserViewModel
     private lateinit var pinnedRepoViewModel: PinnedRepoViewModel
 
-    private lateinit var pinnedRepoAdapter: PinnedRepoAdapter
+    @Inject
+    lateinit var pinnedRepoAdapter: PinnedRepoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,14 +46,11 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.toolbar.root.title = resources.getString(R.string.home)
-        pinnedRepoAdapter = context?.let { PinnedRepoAdapter(it) }!!
         binding.rvPinned.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = pinnedRepoAdapter
         }
-        userViewModel = ViewModelProvider(
-            this
-        )[UserViewModel::class.java]
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         pinnedRepoViewModel = ViewModelProvider(
             this,
@@ -63,21 +62,23 @@ class HomeFragment : Fragment() {
                 userViewModel.getUserDetail()
             }
         }
-        userViewModel.observeUserLiveData().observe(viewLifecycleOwner, Observer {
-            binding.name.text = it.name
-            binding.githubUsername.text = it.login
-            val glideLoader = GlideLoader(requireContext())
-            glideLoader.loadCircularImage(it.avatar_url, binding.profileImage)
-            binding.bio.text = it.bio.replace("\n", "")
-            binding.tvCompany.text = it.company
-            binding.tvLocation.text = it.location
-            binding.tvTwitter.text = it.twitter_username
-            binding.tvTwitter.setOnClickListener {
-                Browser(requireContext()).launch(goToTwitter())
+        userViewModel.observeUserLiveData().observe(viewLifecycleOwner) {
+            with(binding) {
+                name.text = it.name
+                githubUsername.text = it.login
+                val glideLoader = GlideLoader(requireContext())
+                glideLoader.loadCircularImage(it.avatar_url, profileImage)
+                bio.text = it.bio.replace("\n", "")
+                tvCompany.text = it.company
+                tvLocation.text = it.location
+                tvTwitter.text = it.twitter_username
+                tvTwitter.setOnClickListener {
+                    Browser(requireContext()).launch(goToTwitter())
+                }
+                tvFollowers.text = it.followers.toString() + " " + FOLLOWERS
+                tvFollowing.text = it.following.toString() + " " + FOLLOWING
             }
-            binding.tvFollowers.text = it.followers.toString() + " " + FOLLOWERS
-            binding.tvFollowing.text = it.following.toString() + " " + FOLLOWING
-        })
+        }
 
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
@@ -89,16 +90,22 @@ class HomeFragment : Fragment() {
             pinnedRepoAdapter.setUpPinnedRepoList(it)
         }
 
-        binding.tvFollowers.setOnClickListener {
-            setUpFragment(FollowersFragment())
-        }
-
-        binding.tvFollowing.setOnClickListener {
-            setUpFragment(FollowingFragment())
+        with(binding) {
+            tvFollowers.setOnClickListener {
+                setUpFragment(FollowersFragment())
+            }
+            tvFollowing.setOnClickListener {
+                setUpFragment(FollowingFragment())
+            }
+            tvRepositories.setOnClickListener {
+                setUpFragment(RepositoryFragment())
+            }
+            tvStarred.setOnClickListener {
+                setUpFragment(StarredFragment())
+            }
         }
 
         return binding.root
-
     }
 
     private fun goToTwitter(): String {

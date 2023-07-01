@@ -1,19 +1,19 @@
 package com.example.findissues.ui.adapters
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findissues.R
 import com.example.findissues.models.IssuesList
+import com.example.findissues.utils.Browser
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class IssuesAdapter(
-    val context: Context,
+class IssuesAdapter @Inject constructor(
+    @ApplicationContext val context: Context,
 ): RecyclerView.Adapter<IssuesAdapter.IssuesViewHolder>() {
 
     private var issueList = ArrayList<IssuesList>()
@@ -32,10 +32,7 @@ class IssuesAdapter(
         val issue = issueList[position]
         holder.link.text = issue.html_url
         holder.link.setOnClickListener {
-            Toast.makeText(context,"clicked",Toast.LENGTH_SHORT).show()
-            val url = holder.link.text.toString()
-            val browserIntent: Intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            context.startActivity(browserIntent)
+            Browser(context).launch(holder.link.text.toString())
         }
     }
 

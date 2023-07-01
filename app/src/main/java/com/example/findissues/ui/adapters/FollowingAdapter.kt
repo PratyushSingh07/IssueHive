@@ -8,12 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findissues.R
-import com.example.findissues.models.Followers
 import com.example.findissues.models.Following
 import com.example.findissues.utils.GlideLoader
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class FollowingAdapter(
-    private val context: Context
+class FollowingAdapter @Inject constructor(
+    @ApplicationContext private val context: Context
 ) : RecyclerView.Adapter<FollowingAdapter.FollowingViewHolder>(){
 
     private var followingList = ArrayList<Following>()

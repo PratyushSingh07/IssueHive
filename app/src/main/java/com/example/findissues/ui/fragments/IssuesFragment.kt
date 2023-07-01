@@ -17,6 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class IssuesFragment : Fragment() {
@@ -25,7 +26,9 @@ class IssuesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: IssuesViewModel
-    private lateinit var issueAdapter: IssuesAdapter
+
+    @Inject
+    lateinit var issueAdapter: IssuesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +36,6 @@ class IssuesFragment : Fragment() {
     ): View {
         _binding = FragmentIssuesBinding.inflate(inflater, container, false)
         binding.toolbar.root.title = resources.getString(R.string.issues)
-        issueAdapter = context?.let { IssuesAdapter(it) }!!
         binding.progressBar.visibility = View.VISIBLE
         binding.rvIssues.apply {
             layoutManager = LinearLayoutManager(context , LinearLayoutManager.VERTICAL, false)

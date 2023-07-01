@@ -1,25 +1,21 @@
 package com.example.findissues.ui.adapters
 
 import android.content.Context
-import android.content.Intent
-import android.media.Image
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.findissues.R
-import com.example.findissues.models.IssuesList
 import com.example.findissues.models.PinnedRepo
 import com.example.findissues.utils.Browser
 import com.example.findissues.utils.GlideLoader
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class PinnedRepoAdapter(
-    val context: Context
+class PinnedRepoAdapter @Inject constructor(
+    @ApplicationContext val context: Context
 ) : RecyclerView.Adapter<PinnedRepoAdapter.PinnedRepoViewHolder>() {
 
     private var pinnedRepoList = ArrayList<PinnedRepo>()
