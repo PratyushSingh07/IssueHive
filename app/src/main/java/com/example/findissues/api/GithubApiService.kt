@@ -12,6 +12,8 @@ import retrofit2.http.Query
 // https://api.github.com/repos/openmf/mifos-mobile/pulls?state=all -> open/closed PRs
 //https://api.github.com/users/pratyushsingh07/followers?per_page=100 -> followers
 //https://api.github.com/users/pratyushsingh07/following?per_page=100 -> following
+// https://api.github.com/users/pratyushsingh07/repos -> repos of user
+// https://api.github.com/users/pratyushsingh07/starred?per_page=40 -> starred repos of a user
 
 interface GithubApiService {
 

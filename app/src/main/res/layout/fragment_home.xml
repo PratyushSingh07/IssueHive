@@ -260,11 +260,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:layout_marginStart="5"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5"
-                    android:layout_marginEnd="5"
-                    android:layout_marginBottom="5"
                     android:layout_toRightOf="@id/iv_repository"
                     android:text="Repositories"
                     android:textColor="@color/white"
@@ -289,7 +285,7 @@
                     app:tint="@color/white" />
 
                 <TextView
-                    android:id="@+id/tv_organization"
+                    android:id="@+id/tv_starred"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
