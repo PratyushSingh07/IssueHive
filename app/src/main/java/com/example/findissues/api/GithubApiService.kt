@@ -1,6 +1,7 @@
 package com.example.findissues.api
 
 import com.example.findissues.models.*
+import com.example.findissues.models.home.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findissues.R
-import com.example.findissues.models.PinnedRepo
+import com.example.findissues.models.home.PinnedRepo
 import com.example.findissues.utils.Browser
 import com.example.findissues.utils.GlideLoader
 import dagger.hilt.android.qualifiers.ApplicationContext

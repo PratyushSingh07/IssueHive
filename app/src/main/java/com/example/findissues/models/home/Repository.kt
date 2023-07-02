@@ -1,4 +1,4 @@
-package com.example.findissues.models
+package com.example.findissues.models.home
 
 
 data class Repository(
