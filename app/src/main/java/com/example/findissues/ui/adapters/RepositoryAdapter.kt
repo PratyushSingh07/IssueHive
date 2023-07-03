@@ -2,12 +2,9 @@ package com.example.findissues.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.findissues.R
+import com.example.findissues.databinding.ItemRepoBinding
 import com.example.findissues.models.home.Repository
 import com.example.findissues.utils.Browser
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -19,28 +16,29 @@ class RepositoryAdapter @Inject constructor(
 
     private var repoList = ArrayList<Repository>()
 
-    inner class RepositoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val repoName = itemView.findViewById<TextView>(R.id.tv_repo_name)
-        val stars = itemView.findViewById<TextView>(R.id.tv_stars)
-        val language = itemView.findViewById<TextView>(R.id.tv_language)
-        val description = itemView.findViewById<TextView>(R.id.tv_description)
-        val relativeLayout = itemView.findViewById<RelativeLayout>(R.id.parent_rl_repo)
+    inner class RepositoryViewHolder(private val binding: ItemRepoBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(repo: Repository) {
+            binding.tvRepoName.text = repo.name
+            binding.tvStars.text = repo.stargazers_count.toString()
+            binding.tvLanguage.text = repo.language
+            binding.tvDescription.text = repo.description
+            binding.parentRlRepo.setOnClickListener {
+                Browser(context).launch(repo.html_url)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_repo, parent, false)
-        return RepositoryViewHolder(view)
+        val binding =
+            ItemRepoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return RepositoryViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
         val repo = repoList[position]
-        holder.repoName.text = repo.name
-        holder.stars.text = repo.stargazers_count.toString()
-        holder.language.text = repo.language
-        holder.description.text = repo.description
-        holder.relativeLayout.setOnClickListener {
-            Browser(context).launch(repo.html_url)
-        }
+        holder.bind(repo)
     }
 
     override fun getItemCount(): Int {
@@ -51,5 +49,4 @@ class RepositoryAdapter @Inject constructor(
         this.repoList = repoList.toMutableList() as ArrayList<Repository>
         notifyDataSetChanged()
     }
-
 }

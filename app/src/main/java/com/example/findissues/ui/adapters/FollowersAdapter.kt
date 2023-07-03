@@ -2,12 +2,9 @@ package com.example.findissues.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.findissues.R
+import com.example.findissues.databinding.ItemFollowersBinding
 import com.example.findissues.models.home.Followers
 import com.example.findissues.utils.GlideLoader
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -19,21 +16,25 @@ class FollowersAdapter @Inject constructor(
 
     private var followersList = ArrayList<Followers>()
 
-    inner class FollowersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val image = itemView.findViewById<ImageView>(R.id.iv_followers)
-        val login = itemView.findViewById<TextView>(R.id.tv_followers)
+    inner class FollowersViewHolder(private val binding: ItemFollowersBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(follower: Followers) {
+            binding.tvFollowers.text = follower.login
+            val glideLoader = GlideLoader(context)
+            glideLoader.loadCircularImage(follower.avatar_url, binding.ivFollowers)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowersViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_followers, parent, false)
-        return FollowersViewHolder(view)
+        val binding =
+            ItemFollowersBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FollowersViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: FollowersViewHolder, position: Int) {
         val follower = followersList[position]
-        holder.login.text = follower.login
-        val glideLoader = GlideLoader(context)
-        glideLoader.loadCircularImage(follower.avatar_url, holder.image)
+        holder.bind(follower)
     }
 
     override fun getItemCount(): Int {
@@ -44,5 +45,4 @@ class FollowersAdapter @Inject constructor(
         this.followersList = followersList.toMutableList() as ArrayList<Followers>
         notifyDataSetChanged()
     }
-
 }
