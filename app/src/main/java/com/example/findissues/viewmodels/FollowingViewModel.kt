@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.findissues.models.Following
+import com.example.findissues.models.home.Following
 import com.example.findissues.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call

@@ -1,6 +1,6 @@
 package com.example.findissues.api
 
-//import com.example.findissues.models.Repository
+//import com.example.findissues.models.home.Repository
 //import com.example.findissues.utils.Constants
 //import io.ktor.client.*
 //import io.ktor.client.request.*

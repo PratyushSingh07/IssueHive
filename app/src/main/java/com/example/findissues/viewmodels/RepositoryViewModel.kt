@@ -3,7 +3,7 @@ package com.example.findissues.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.findissues.models.Repository
+import com.example.findissues.models.home.Repository
 import com.example.findissues.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call

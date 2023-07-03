@@ -1,4 +1,4 @@
-package com.example.findissues.models
+package com.example.findissues.models.home
 
 data class User(
     val login: String,

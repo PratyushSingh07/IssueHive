@@ -1,50 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="10dp"
     android:id="@+id/parent_rl_repo">
 
-    <RelativeLayout
-        android:id="@+id/rl_repo_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_repo_name"
-            android:layout_width="match_parent"
-            android:textColor="@color/white"
-            android:text="Name"
-            android:textSize="18sp"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/tv_description"
-            android:textColor="@color/white"
-            android:layout_below="@+id/tv_repo_name"
-            android:layout_width="match_parent"
-            android:text="hello this is a repositorty"
-            android:textSize="18sp"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_below="@id/rl_repo_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_stars"
-            android:text="4"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/tv_language"
-            android:layout_toRightOf="@+id/tv_stars"
-            android:text="kotlin"
-            android:layout_marginLeft="10dp"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_repo_name"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:ems="20"
+        android:maxLines="2"
+        android:text="HEADINGQWERRFDRFDAFFADAVSDCSDCDVSDVSDVDSVSDSDV"
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/tv_description"
+        android:textColor="@color/white"
+        android:layout_below="@id/tv_repo_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="kotlin"
+        android:textSize="14dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="-5dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_description">
+
+            <TextView
+            android:id="@+id/tv_stars"
+                android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:maxLines="3"
+            android:textSize="14dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="-5dp"/>
+
+            <TextView
+                android:id="@+id/tv_language"
+                android:textColor="@color/white"
+                android:layout_toRightOf="@id/tv_stars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="kotlin"
+                android:textSize="14dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="-5dp"/>
+        </RelativeLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF" />
 
 </RelativeLayout>
