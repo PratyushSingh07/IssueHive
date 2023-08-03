@@ -1,16 +1,14 @@
 package com.example.findissues.ui.activity
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.findissues.FindIssuesApp.Companion.context
 import com.example.findissues.R
 import com.example.findissues.databinding.ActivityMainBinding
 import com.example.findissues.ui.fragments.HomeFragment
 import com.example.findissues.ui.fragments.IssuesFragment
 import com.example.findissues.ui.fragments.PullsFragment
-import com.example.findissues.ui.fragments.StatusFragment
+import com.example.findissues.ui.fragments.StatisticsFragment
 import com.example.findissues.utils.Network
 import com.example.findissues.utils.Toaster
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val issuesFragment = IssuesFragment()
         val pullsFragment = PullsFragment()
-        val statusFragment = StatusFragment()
+        val statisticsFragment = StatisticsFragment()
 
         setCurrentFragment(homeFragment)
 
@@ -49,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                     setCurrentFragment(pullsFragment)
                 }
                 R.id.status -> {
-                    setCurrentFragment(statusFragment)
+                    setCurrentFragment(statisticsFragment)
                 }
             }
 

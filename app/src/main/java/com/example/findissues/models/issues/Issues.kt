@@ -1,4 +1,4 @@
-package com.example.findissues.models
+package com.example.findissues.models.issues
 
 data class Issues(
     val total_count: Int,

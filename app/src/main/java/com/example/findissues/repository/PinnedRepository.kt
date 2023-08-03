@@ -1,6 +1,6 @@
 package com.example.findissues.repository
 
-import com.example.findissues.api.PinnedRepoService
+import com.example.findissues.api.pinned.PinnedRepoService
 import javax.inject.Inject
 
 class PinnedRepository @Inject constructor(private val service: PinnedRepoService) {

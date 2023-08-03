@@ -1,4 +1,4 @@
-package com.example.findissues.api
+package com.example.findissues.api.pinned
 
 import com.example.findissues.models.home.PinnedRepo
 import retrofit2.Call

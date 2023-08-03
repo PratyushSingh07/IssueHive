@@ -1,6 +1,9 @@
 package com.example.findissues.di
 
 import com.example.findissues.api.*
+import com.example.findissues.api.github.GithubApiService
+import com.example.findissues.api.pinned.PinnedRepoService
+import com.example.findissues.api.profile.ProfileStatsService
 import com.example.findissues.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -8,7 +11,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module

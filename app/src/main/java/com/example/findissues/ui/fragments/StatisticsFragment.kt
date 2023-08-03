@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.findissues.R
-import com.example.findissues.databinding.FragmentStatusBinding
+import com.example.findissues.databinding.FragmentStatisticsBinding
 import com.example.findissues.viewmodels.ProfileStatsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class StatusFragment : Fragment() {
+class StatisticsFragment : Fragment() {
 
-    private var _binding: FragmentStatusBinding? = null
+    private var _binding: FragmentStatisticsBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var viewModel: ProfileStatsViewModel
@@ -24,9 +24,9 @@ class StatusFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentStatusBinding.inflate(inflater, container, false)
+        _binding = FragmentStatisticsBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[ProfileStatsViewModel::class.java]
-        binding.toolbar.root.title = resources.getString(R.string.status)
+        binding.toolbar.root.title = resources.getString(R.string.statistics)
         return binding.root
     }
 

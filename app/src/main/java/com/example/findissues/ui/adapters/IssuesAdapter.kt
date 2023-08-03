@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findissues.databinding.ItemIssueBinding
-import com.example.findissues.models.IssuesList
+import com.example.findissues.models.issues.IssuesList
 import com.example.findissues.utils.Browser
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject

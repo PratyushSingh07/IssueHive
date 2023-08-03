@@ -1,6 +1,6 @@
 package com.example.findissues.repository
 
-import com.example.findissues.api.GithubApiService
+import com.example.findissues.api.github.GithubApiService
 import com.example.findissues.utils.Constants
 import javax.inject.Inject
 

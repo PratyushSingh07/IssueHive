@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.StatusFragment"
+    tools:context=".ui.fragments.StatisticsFragment"
     android:background="@color/github_bkg">
 
     <include
@@ -12,11 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- TODO: Update blank fragment layout -->
     <ImageView
         android:id="@+id/profile_summary_iv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="status fragment" />
+        android:layout_height="wrap_content" />
 
 </FrameLayout>

@@ -4,10 +4,10 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="Home"/>
+        android:title="@string/home"/>
     <item
         android:id="@+id/issues"
-        android:title="Issues"
+        android:title="@string/issues"
         android:icon="@drawable/issues"/>
     <item
         android:id="@+id/pulls"
@@ -15,7 +15,7 @@
         android:title="Pulls"/>
     <item
         android:id="@+id/status"
-        android:icon="@drawable/merger"
-        android:title="Status"/>
+        android:icon="@drawable/piechart"
+        android:title="@string/statistics"/>
 
 </menu>

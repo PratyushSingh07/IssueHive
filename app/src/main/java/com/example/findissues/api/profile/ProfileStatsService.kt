@@ -1,4 +1,4 @@
-package com.example.findissues.api
+package com.example.findissues.api.profile
 
 import okhttp3.ResponseBody
 import retrofit2.Call

@@ -1,4 +1,4 @@
-package com.example.findissues.models
+package com.example.findissues.models.issues
 
 data class IssuesList(
     val url: String,
