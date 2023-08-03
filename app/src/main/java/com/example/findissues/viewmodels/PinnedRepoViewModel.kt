@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.findissues.models.home.PinnedRepo
 import com.example.findissues.repository.DataRepository
+import com.example.findissues.repository.PinnedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PinnedRepoViewModel @Inject constructor(
-    private val repository: DataRepository
+    private val repository: PinnedRepository
 ) : ViewModel() {
     private var pinnedRepoLiveData = MutableLiveData<List<PinnedRepo>>()
 

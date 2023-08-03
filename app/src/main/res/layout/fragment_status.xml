@@ -13,9 +13,10 @@
         android:layout_height="wrap_content" />
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/profile_summary_iv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="status fragment" />
 
 </FrameLayout>

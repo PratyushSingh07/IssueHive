@@ -29,11 +29,6 @@ interface GithubApiService {
         @Path("username") username: String
     ): Call<User>
 
-    @GET("/users={username}")
-    fun getPinnedRepos(
-        @Query("username") username: String
-    ): Call<List<PinnedRepo>>
-
     @GET("/users/{username}/followers")
     fun getFollowers(
         @Path("username") username: String
