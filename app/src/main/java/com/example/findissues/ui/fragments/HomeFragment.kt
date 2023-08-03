@@ -5,14 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.findissues.R
-import com.example.findissues.api.ServiceHandler
 import com.example.findissues.databinding.FragmentHomeBinding
-import com.example.findissues.repository.DataRepository
 import com.example.findissues.ui.adapters.PinnedRepoAdapter
 import com.example.findissues.utils.Browser
 import com.example.findissues.utils.Constants.FOLLOWERS
@@ -20,7 +17,6 @@ import com.example.findissues.utils.Constants.FOLLOWING
 import com.example.findissues.utils.Constants.TWITTER_BASE_URL
 import com.example.findissues.utils.GlideLoader
 import com.example.findissues.viewmodels.PinnedRepoViewModel
-import com.example.findissues.viewmodels.factory.PinnedRepoViewModelFactory
 import com.example.findissues.viewmodels.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -41,8 +37,7 @@ class HomeFragment : Fragment() {
     lateinit var pinnedRepoAdapter: PinnedRepoAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.toolbar.root.title = resources.getString(R.string.home)
@@ -52,10 +47,7 @@ class HomeFragment : Fragment() {
         }
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
-        pinnedRepoViewModel = ViewModelProvider(
-            this,
-            PinnedRepoViewModelFactory(DataRepository(ServiceHandler.pinnedRepoService))
-        )[PinnedRepoViewModel::class.java]
+        pinnedRepoViewModel = ViewModelProvider(this)[PinnedRepoViewModel::class.java]
 
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
