@@ -3,7 +3,7 @@ package com.example.findissues.api.github
 import com.example.findissues.models.*
 import com.example.findissues.models.home.*
 import com.example.findissues.models.issues.Issues
-import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -20,29 +20,29 @@ import retrofit2.http.Query
 interface GithubApiService {
 
     @GET("/search/issues?")
-    fun getIssue(
+    suspend fun getIssue(
         @Query("q") language: String,
         @Query("sort") sort: String
-    ): Call<Issues>
+    ): Response<Issues>
 
     @GET("users/{username}")
-    fun getUser(
+    suspend fun getUser(
         @Path("username") username: String
-    ): Call<User>
+    ): Response<User>
 
     @GET("/users/{username}/followers")
-    fun getFollowers(
+    suspend fun getFollowers(
         @Path("username") username: String
-    ): Call<List<Followers>>
+    ): Response<List<Followers>>
 
     @GET("/users/{username}/following")
-    fun getFollowings(
+    suspend fun getFollowings(
         @Path("username") username: String
-    ): Call<List<Following>>
+    ): Response<List<Following>>
 
     @GET("/users/{username}/repos")
-    fun getRepos(
+    suspend fun getRepos(
         @Path("username") username: String
-    ): Call<List<Repository>>
+    ): Response<List<Repository>>
 
 }
