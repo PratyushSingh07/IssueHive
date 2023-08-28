@@ -38,7 +38,7 @@ interface GithubApiService {
     @GET("/users/{username}/following")
     suspend fun getFollowings(
         @Path("username") username: String
-    ): Response<List<Following>>
+    ): List<Following>
 
     @GET("/users/{username}/repos")
     suspend fun getRepos(
