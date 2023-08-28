@@ -2,8 +2,8 @@ package com.example.findissues.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.findissues.models.home.Following
 import com.example.findissues.repository.DataRepository
+import com.example.findissues.utils.FollowingUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,15 +15,18 @@ class FollowingViewModel @Inject constructor(
     private val repository: DataRepository
 ) : ViewModel() {
 
-    private val followingList = MutableStateFlow<List<Following>>(emptyList())
+    private val followingList = MutableStateFlow<FollowingUiState>(FollowingUiState.Loading)
 
     fun getFollowing() {
         viewModelScope.launch {
-            followingList.value = repository.getFollowing()
+            followingList.value = FollowingUiState.Loading
+            repository.getFollowing().collect {
+                followingList.value = FollowingUiState.FollowingList(it)
+            }
         }
     }
 
-    fun observeFollowingList(): StateFlow<List<Following>> {
+    fun observeFollowingList(): StateFlow<FollowingUiState> {
         return followingList
     }
 

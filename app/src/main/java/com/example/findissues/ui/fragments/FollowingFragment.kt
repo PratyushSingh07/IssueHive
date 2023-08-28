@@ -4,44 +4,44 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.findissues.databinding.FragmentFollowingBinding
-import com.example.findissues.ui.adapters.FollowingAdapter
+import com.example.findissues.models.home.Following
+import com.example.findissues.ui.FollowingScreen
+import com.example.findissues.utils.FollowingUiState
 import com.example.findissues.viewmodels.FollowingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class FollowingFragment : Fragment() {
 
-    private var _binding: FragmentFollowingBinding? = null
-    private val binding get() = _binding!!
-
     private lateinit var followingViewModel: FollowingViewModel
 
-    @Inject
-    lateinit var followingAdapter: FollowingAdapter
+    private var listState by mutableStateOf(emptyList<Following>())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFollowingBinding.inflate(inflater, container, false)
-        binding.rvFollowing.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = followingAdapter
-        }
         followingViewModel = ViewModelProvider(this)[FollowingViewModel::class.java]
 
         followingViewModel.getFollowing()
 
-        return binding.root
+        return ComposeView(requireContext()).apply {
+            setViewCompositionStrategy(ViewCompositionStrategy.Default)
+            setContent {
+                FollowingScreen(listState)
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,7 +49,12 @@ class FollowingFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 followingViewModel.observeFollowingList().collect {
-                    followingAdapter.setUpFollowingList(it)
+                    when (it) {
+                        is FollowingUiState.FollowingList -> {
+                            listState = it.followingList
+                        }
+                        else -> {}
+                    }
                 }
             }
         }
