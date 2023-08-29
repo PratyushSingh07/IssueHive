@@ -33,4 +33,5 @@ ext {
     composeActivity = '1.6.0'
     materialVersion = '1.1.0'
     lifecycleVersion = '2.6.1'
+    coilVersion = '2.0.0-rc01'
 }
