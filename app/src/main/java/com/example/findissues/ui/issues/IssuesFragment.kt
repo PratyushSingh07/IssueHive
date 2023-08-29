@@ -1,6 +1,7 @@
 package com.example.findissues.ui.issues
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +15,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.core.ui.components.AppErrorBackground
 import com.example.findissues.models.issues.IssuesList
 import com.example.findissues.utils.IssuesUiState
+import com.example.findissues.utils.Network
+import com.example.findissues.utils.Toaster
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -35,7 +39,7 @@ class IssuesFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.Default)
             setContent {
-                IssuesScreen(listState , isLoading)
+                IssuesScreen(listState, isLoading)
             }
         }
     }
@@ -53,6 +57,9 @@ class IssuesFragment : Fragment() {
                         is IssuesUiState.ListIssues -> {
                             isLoading = false
                             listState = it.issuesList
+                        }
+                        is IssuesUiState.Error -> {
+                            isLoading = false
                         }
                     }
                 }

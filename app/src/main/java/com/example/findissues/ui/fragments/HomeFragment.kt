@@ -18,6 +18,8 @@ import com.example.findissues.utils.Constants.FOLLOWERS
 import com.example.findissues.utils.Constants.FOLLOWING
 import com.example.findissues.utils.Constants.TWITTER_BASE_URL
 import com.example.findissues.utils.GlideLoader
+import com.example.findissues.utils.Network
+import com.example.findissues.utils.Toaster
 import com.example.findissues.viewmodels.PinnedRepoViewModel
 import com.example.findissues.viewmodels.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,6 +45,10 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.toolbar.root.title = resources.getString(R.string.home)
+        if(!Network.isConnected(activity)){
+            Toaster.show(binding.root,"Connect to internet")
+            return binding.root
+        }
         binding.rvPinned.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = pinnedRepoAdapter

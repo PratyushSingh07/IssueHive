@@ -38,7 +38,7 @@ class FollowingFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.Default)
             setContent {
-                FollowingScreen(listState,isLoading)
+                FollowingScreen(listState, isLoading)
             }
         }
     }
@@ -55,6 +55,9 @@ class FollowingFragment : Fragment() {
                         }
                         is FollowingUiState.Loading -> {
                             isLoading = true
+                        }
+                        FollowingUiState.Error -> {
+                            isLoading = false
                         }
                     }
                 }

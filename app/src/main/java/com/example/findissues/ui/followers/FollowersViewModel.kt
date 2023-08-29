@@ -7,6 +7,7 @@ import com.example.findissues.utils.FollowersUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,7 +21,9 @@ class FollowersViewModel @Inject constructor(
     fun getFollowers() {
         viewModelScope.launch {
             followersLiveData.value = FollowersUiState.Loading
-            repository.getFollowers().collect {
+            repository.getFollowers().catch {
+                followersLiveData.value = FollowersUiState.Error
+            }.collect {
                 followersLiveData.value = FollowersUiState.FollowersList(it)
             }
         }

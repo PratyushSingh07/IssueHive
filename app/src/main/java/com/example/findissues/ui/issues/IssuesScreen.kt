@@ -18,7 +18,7 @@ import com.example.findissues.models.issues.IssuesList
 @Composable
 fun IssuesScreen(list: List<IssuesList>, isLoading: Boolean) {
 
-    if(isLoading) {
+    if (isLoading) {
         AppCircularProgressBar()
     } else {
         LazyColumn(modifier = Modifier.background(Color(0xFF0d1117))) {
@@ -44,5 +44,5 @@ fun IssuesScreen(list: List<IssuesList>, isLoading: Boolean) {
 @Preview
 @Composable
 fun IssuesScreenPreview() {
-    IssuesScreen(emptyList(),true)
+    IssuesScreen(emptyList(), true)
 }

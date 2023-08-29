@@ -7,6 +7,7 @@ import com.example.findissues.utils.IssuesUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,7 +20,9 @@ class IssuesViewModel @Inject constructor(
     fun getIssueLink() {
         viewModelScope.launch {
             issueLiveData.value = IssuesUiState.Loading
-            repository.getAllIssues().collect {
+            repository.getAllIssues().catch {
+                issueLiveData.value = IssuesUiState.Error
+            }.collect {
                 issueLiveData.value = IssuesUiState.ListIssues(it.items)
             }
         }

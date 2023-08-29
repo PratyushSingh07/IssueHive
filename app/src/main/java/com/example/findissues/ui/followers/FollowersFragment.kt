@@ -58,6 +58,9 @@ class FollowersFragment : Fragment() {
                         is FollowersUiState.Loading -> {
                             isLoading = true
                         }
+                        FollowersUiState.Error -> {
+                            isLoading = false
+                        }
                     }
                 }
             }
