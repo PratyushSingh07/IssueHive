@@ -15,11 +15,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.core.ui.components.AppErrorBackground
 import com.example.findissues.models.issues.IssuesList
 import com.example.findissues.utils.IssuesUiState
-import com.example.findissues.utils.Network
-import com.example.findissues.utils.Toaster
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
