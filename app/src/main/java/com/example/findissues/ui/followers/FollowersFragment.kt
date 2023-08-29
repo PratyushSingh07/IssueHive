@@ -1,4 +1,4 @@
-package com.example.findissues.ui.following
+package com.example.findissues.ui.followers
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,42 +14,44 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.findissues.models.home.Following
-import com.example.findissues.utils.FollowingUiState
+import com.example.findissues.models.home.Followers
+import com.example.findissues.utils.FollowersUiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FollowingFragment : Fragment() {
+class FollowersFragment : Fragment() {
 
-    private lateinit var followingViewModel: FollowingViewModel
+    private lateinit var followersViewModel: FollowersViewModel
 
-    private var listState by mutableStateOf(emptyList<Following>())
+    private var listState by mutableStateOf(emptyList<Followers>())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        followingViewModel = ViewModelProvider(this)[FollowingViewModel::class.java]
 
-        followingViewModel.getFollowing()
+        followersViewModel = ViewModelProvider(this)[FollowersViewModel::class.java]
+
+        followersViewModel.getFollowers()
 
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.Default)
             setContent {
-                FollowingScreen(listState)
+                FollowersScreen(listState)
             }
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                followingViewModel.observeFollowingList().collect {
+                followersViewModel.observeFollowersLiveData().collect {
                     when (it) {
-                        is FollowingUiState.FollowingList -> {
-                            listState = it.followingList
+                        is FollowersUiState.FollowersList -> {
+                            listState = it.followersList
                         }
                         else -> {}
                     }
@@ -57,4 +59,5 @@ class FollowingFragment : Fragment() {
             }
         }
     }
+
 }

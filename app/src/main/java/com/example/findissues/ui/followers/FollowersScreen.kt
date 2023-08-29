@@ -1,4 +1,4 @@
-package com.example.findissues.ui.following
+package com.example.findissues.ui.followers
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -17,10 +17,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.core.ui.components.AppCard
-import com.example.findissues.models.home.Following
+import com.example.findissues.models.home.Followers
 
 @Composable
-fun FollowingScreen(list: List<Following>) {
+fun FollowersScreen(list: List<Followers>) {
 
     LazyColumn(
         modifier = Modifier.background(Color(0xFF0d1117))
@@ -57,10 +57,11 @@ fun FollowingScreen(list: List<Following>) {
             }
         }
     }
+
 }
 
 @Preview
 @Composable
-fun FollowingScreenPreview() {
-    FollowingScreen(emptyList())
+fun FollowersPreviewScreen() {
+    FollowersScreen(emptyList())
 }

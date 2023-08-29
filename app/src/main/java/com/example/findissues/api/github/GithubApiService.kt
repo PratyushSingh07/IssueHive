@@ -33,7 +33,7 @@ interface GithubApiService {
     @GET("/users/{username}/followers")
     suspend fun getFollowers(
         @Path("username") username: String
-    ): Response<List<Followers>>
+    ): List<Followers>
 
     @GET("/users/{username}/following")
     suspend fun getFollowings(
