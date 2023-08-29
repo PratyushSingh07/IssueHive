@@ -25,6 +25,7 @@ class FollowingFragment : Fragment() {
     private lateinit var followingViewModel: FollowingViewModel
 
     private var listState by mutableStateOf(emptyList<Following>())
+    private var isLoading by mutableStateOf(false)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +38,7 @@ class FollowingFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.Default)
             setContent {
-                FollowingScreen(listState)
+                FollowingScreen(listState,isLoading)
             }
         }
     }
@@ -49,9 +50,12 @@ class FollowingFragment : Fragment() {
                 followingViewModel.observeFollowingList().collect {
                     when (it) {
                         is FollowingUiState.FollowingList -> {
+                            isLoading = false
                             listState = it.followingList
                         }
-                        else -> {}
+                        is FollowingUiState.Loading -> {
+                            isLoading = true
+                        }
                     }
                 }
             }

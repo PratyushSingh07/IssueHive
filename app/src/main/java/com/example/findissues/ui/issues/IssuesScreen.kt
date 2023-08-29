@@ -1,4 +1,4 @@
-package com.example.findissues.ui
+package com.example.findissues.ui.issues
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,26 +11,31 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.core.ui.components.AppCard
+import com.example.core.ui.components.AppCircularProgressBar
 import com.example.core.ui.components.AppRowCard
 import com.example.findissues.models.issues.IssuesList
 
 @Composable
-fun IssuesScreen(list: List<IssuesList>) {
+fun IssuesScreen(list: List<IssuesList>, isLoading: Boolean) {
 
-    LazyColumn(modifier = Modifier.background(Color(0xFF0d1117))) {
-        items(list) { items ->
-            AppCard(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                AppRowCard(
+    if(isLoading) {
+        AppCircularProgressBar()
+    } else {
+        LazyColumn(modifier = Modifier.background(Color(0xFF0d1117))) {
+            items(list) { items ->
+                AppCard(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color(0xFF0d1117))
-                        .padding(16.dp),
-                    text = items.url
-                )
+                        .padding(16.dp)
+                ) {
+                    AppRowCard(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color(0xFF0d1117))
+                            .padding(16.dp),
+                        text = items.url
+                    )
+                }
             }
         }
     }
@@ -39,5 +44,5 @@ fun IssuesScreen(list: List<IssuesList>) {
 @Preview
 @Composable
 fun IssuesScreenPreview() {
-    IssuesScreen(emptyList())
+    IssuesScreen(emptyList(),true)
 }

@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.findissues.models.issues.IssuesList
-import com.example.findissues.ui.IssuesScreen
 import com.example.findissues.utils.IssuesUiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -25,6 +24,7 @@ class IssuesFragment : Fragment() {
 
     private lateinit var viewModel: IssuesViewModel
     private var listState by mutableStateOf(emptyList<IssuesList>())
+    var isLoading by mutableStateOf(false)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +35,7 @@ class IssuesFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.Default)
             setContent {
-                IssuesScreen(listState)
+                IssuesScreen(listState , isLoading)
             }
         }
     }
@@ -48,10 +48,10 @@ class IssuesFragment : Fragment() {
                 viewModel.observeIssueLiveData().collect {
                     when (it) {
                         is IssuesUiState.Loading -> {
-//                            binding.progressBar.visibility = View.VISIBLE
+                            isLoading = true
                         }
                         is IssuesUiState.ListIssues -> {
-//                            binding.progressBar.visibility = View.GONE
+                            isLoading = false
                             listState = it.issuesList
                         }
                     }

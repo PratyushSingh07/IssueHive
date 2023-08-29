@@ -25,6 +25,7 @@ class FollowersFragment : Fragment() {
     private lateinit var followersViewModel: FollowersViewModel
 
     private var listState by mutableStateOf(emptyList<Followers>())
+    private var isLoading by mutableStateOf(false)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +39,7 @@ class FollowersFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.Default)
             setContent {
-                FollowersScreen(listState)
+                FollowersScreen(listState, isLoading)
             }
         }
     }
@@ -51,9 +52,12 @@ class FollowersFragment : Fragment() {
                 followersViewModel.observeFollowersLiveData().collect {
                     when (it) {
                         is FollowersUiState.FollowersList -> {
+                            isLoading = false
                             listState = it.followersList
                         }
-                        else -> {}
+                        is FollowersUiState.Loading -> {
+                            isLoading = true
+                        }
                     }
                 }
             }

@@ -11,29 +11,34 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.core.ui.components.AppCard
+import com.example.core.ui.components.AppCircularProgressBar
 import com.example.core.ui.components.AppRowCard
 import com.example.findissues.models.home.Followers
 
 @Composable
-fun FollowersScreen(list: List<Followers>) {
+fun FollowersScreen(list: List<Followers>, isLoading: Boolean) {
 
-    LazyColumn(
-        modifier = Modifier.background(Color(0xFF0d1117))
-    ) {
-        items(list) { item ->
-            AppCard(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                AppRowCard(
+    if (isLoading) {
+        AppCircularProgressBar()
+    } else {
+        LazyColumn(
+            modifier = Modifier.background(Color(0xFF0d1117))
+        ) {
+            items(list) { item ->
+                AppCard(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color(0xFF0d1117))
-                        .padding(16.dp),
-                    imageUrl = item.avatar_url,
-                    text = item.login
-                )
+                        .padding(16.dp)
+                ) {
+                    AppRowCard(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color(0xFF0d1117))
+                            .padding(16.dp),
+                        imageUrl = item.avatar_url,
+                        text = item.login
+                    )
+                }
             }
         }
     }
@@ -43,5 +48,5 @@ fun FollowersScreen(list: List<Followers>) {
 @Preview
 @Composable
 fun FollowersPreviewScreen() {
-    FollowersScreen(emptyList())
+    FollowersScreen(emptyList(),true)
 }
