@@ -20,7 +20,7 @@ import coil.compose.AsyncImage
 fun AppRowCard(
     modifier: Modifier,
     verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
-    imageUrl: String,
+    imageUrl: String? = null,
     contentDescription: String? = null,
     text: String
 ) {
@@ -36,7 +36,9 @@ fun AppRowCard(
                 .size(64.dp)
         )
 
-        Spacer(modifier = Modifier.width(24.dp))
+        if (imageUrl != null) {
+            Spacer(modifier = Modifier.width(24.dp))
+        }
 
         Text(
             text = text,

@@ -23,7 +23,7 @@ interface GithubApiService {
     suspend fun getIssue(
         @Query("q") language: String,
         @Query("sort") sort: String
-    ): Response<Issues>
+    ): Issues
 
     @GET("users/{username}")
     suspend fun getUser(

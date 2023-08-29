@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.findissues.R
 import com.example.findissues.databinding.ActivityMainBinding
 import com.example.findissues.ui.fragments.HomeFragment
-import com.example.findissues.ui.fragments.IssuesFragment
+import com.example.findissues.ui.issues.IssuesFragment
 import com.example.findissues.ui.fragments.PullsFragment
 import com.example.findissues.ui.fragments.StatisticsFragment
 import com.example.findissues.utils.Network
