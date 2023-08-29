@@ -1,4 +1,4 @@
-package com.example.findissues.viewmodels
+package com.example.findissues.ui.following
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

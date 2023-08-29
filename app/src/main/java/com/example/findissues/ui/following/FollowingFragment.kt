@@ -1,4 +1,4 @@
-package com.example.findissues.ui.fragments
+package com.example.findissues.ui.following
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,7 +17,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.findissues.models.home.Following
 import com.example.findissues.ui.FollowingScreen
 import com.example.findissues.utils.FollowingUiState
-import com.example.findissues.viewmodels.FollowingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

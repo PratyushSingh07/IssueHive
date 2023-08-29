@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.findissues.R
 import com.example.findissues.databinding.FragmentHomeBinding
 import com.example.findissues.ui.adapters.PinnedRepoAdapter
+import com.example.findissues.ui.following.FollowingFragment
 import com.example.findissues.utils.Browser
 import com.example.findissues.utils.Constants.FOLLOWERS
 import com.example.findissues.utils.Constants.FOLLOWING
