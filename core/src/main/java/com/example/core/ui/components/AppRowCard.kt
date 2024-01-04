@@ -25,26 +25,20 @@ fun AppRowCard(
     text: String
 ) {
     Row(
-        modifier = modifier,
-        verticalAlignment = verticalAlignment
+        modifier = modifier, verticalAlignment = verticalAlignment
     ) {
-        AsyncImage(
-            model = imageUrl,
-            contentDescription = contentDescription,
-            modifier = Modifier
-                .clip(CircleShape)
-                .size(64.dp)
-        )
-
         if (imageUrl != null) {
+            AsyncImage(
+                model = imageUrl,
+                contentDescription = contentDescription,
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .size(64.dp)
+            )
             Spacer(modifier = Modifier.width(24.dp))
         }
-
         Text(
-            text = text,
-            textAlign = TextAlign.Center,
-            color = Color.White,
-            fontSize = 16.sp
+            text = text, textAlign = TextAlign.Center, color = Color.White, fontSize = 16.sp
         )
     }
 }

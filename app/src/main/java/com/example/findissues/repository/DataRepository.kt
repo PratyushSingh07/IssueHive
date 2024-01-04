@@ -11,8 +11,8 @@ import javax.inject.Inject
 
 class DataRepository @Inject constructor(private val service: GithubApiService) {
 
-    suspend fun getAllIssues(): Flow<Issues> = flow {
-        emit(service.getIssue("kotlin", Constants.CREATED))
+    suspend fun getAllIssues(tag:String): Flow<Issues> = flow {
+        emit(service.getIssue(tag, Constants.CREATED))
     }
 
     suspend fun getUser() = service.getUser("pratyushsingh07")

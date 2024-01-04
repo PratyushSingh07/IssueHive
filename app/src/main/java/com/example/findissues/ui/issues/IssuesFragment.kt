@@ -1,7 +1,6 @@
 package com.example.findissues.ui.issues
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,15 +27,14 @@ class IssuesFragment : Fragment() {
     var isLoading by mutableStateOf(false)
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
 
         viewModel = ViewModelProvider(this)[IssuesViewModel::class.java]
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.Default)
             setContent {
-                IssuesScreen(listState, isLoading)
+                IssuesScreen(listState, isLoading, viewModel)
             }
         }
     }
@@ -51,10 +49,12 @@ class IssuesFragment : Fragment() {
                         is IssuesUiState.Loading -> {
                             isLoading = true
                         }
+
                         is IssuesUiState.ListIssues -> {
                             isLoading = false
                             listState = it.issuesList
                         }
+
                         is IssuesUiState.Error -> {
                             isLoading = false
                         }
