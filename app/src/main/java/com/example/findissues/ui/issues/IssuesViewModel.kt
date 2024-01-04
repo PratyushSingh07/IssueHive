@@ -16,16 +16,25 @@ class IssuesViewModel @Inject constructor(
     private val repository: DataRepository
 ) : ViewModel() {
     private var issueLiveData = MutableStateFlow<IssuesUiState>(IssuesUiState.Loading)
+    private val tags = listOf("Kotlin", "Java", "Python")
+    var tag = ""
+        private set
 
+    fun getTags() = tags
     fun getIssueLink() {
         viewModelScope.launch {
             issueLiveData.value = IssuesUiState.Loading
-            repository.getAllIssues().catch {
+            repository.getAllIssues(tag).catch {
                 issueLiveData.value = IssuesUiState.Error
             }.collect {
                 issueLiveData.value = IssuesUiState.ListIssues(it.items)
             }
         }
+    }
+
+    fun tagSelected(selectedTag: String) {
+        tag = selectedTag
+        getIssueLink()
     }
 
     fun observeIssueLiveData(): StateFlow<IssuesUiState> {
