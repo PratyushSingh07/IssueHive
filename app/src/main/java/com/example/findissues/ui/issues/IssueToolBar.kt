@@ -9,14 +9,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import com.example.findissues.R
 
 @Composable
 fun IssueToolBar() {
     TopAppBar(
         title = {
             Text(
-                text = "Issues",
+                text = stringResource(id = R.string.issues),
                 fontWeight = FontWeight.Medium,
                 color = Color.White,
                 style = MaterialTheme.typography.headlineSmall

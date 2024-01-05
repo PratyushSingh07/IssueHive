@@ -28,7 +28,7 @@ fun Tag(tagText: String, selected: Boolean, onclick: () -> Unit) {
                 BorderStroke(1.dp, Color(0xFF018786)), shape = RoundedCornerShape(100.dp)
             )
             .background(if (selected) Color(0xFF018786) else Color(0xFF0d1117))
-            .padding(10.dp)
+            .padding(8.dp)
     ) {
         Text(
             text = tagText,

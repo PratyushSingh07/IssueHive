@@ -16,7 +16,7 @@ class IssuesViewModel @Inject constructor(
     private val repository: DataRepository
 ) : ViewModel() {
     private var issueLiveData = MutableStateFlow<IssuesUiState>(IssuesUiState.Loading)
-    private val tags = listOf("Kotlin", "Java", "Python")
+    private val tags = listOf("Kotlin", "Java", "Python","Rust","React.js","Go","Javascript","Node.js")
     var tag = ""
         private set
 

@@ -7,5 +7,6 @@
     <string name="pulls">Pull Requests</string>
     <string name="statistics">Statistics</string>
     <string name="profile">Profile</string>
+    <string name="please_select_a_tag">Please select a tag</string>
 
 </resources>
