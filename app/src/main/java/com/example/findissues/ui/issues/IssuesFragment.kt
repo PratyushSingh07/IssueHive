@@ -25,7 +25,7 @@ class IssuesFragment : Fragment() {
     private lateinit var viewModel: IssuesViewModel
     private var listState by mutableStateOf(emptyList<IssuesList>())
     var isLoading by mutableStateOf(false)
-
+    private var storedTag = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -39,11 +39,17 @@ class IssuesFragment : Fragment() {
         }
     }
 
+    override fun onPause() {
+        storedTag = viewModel.tag
+        super.onPause()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getIssueLink()
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.tagSelected(storedTag)
                 viewModel.observeIssueLiveData().collect {
                     when (it) {
                         is IssuesUiState.Loading -> {
