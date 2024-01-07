@@ -1,0 +1,53 @@
+name: Workflow for master branche
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out repository
+        uses: actions/checkout@v4
+
+        # Set up JDK
+      - name: Set Up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+        # Install NDK
+      - name: Install NDK
+        run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;20.0.5594570" --sdk_root=${ANDROID_SDK_ROOT}
+
+        # Update Gradle Permission
+      - name: Change gradlew Permission
+        run: chmod +x gradlew
+
+        # Build App
+      - name: Build with Gradle
+        run: ./gradlew assemble
+
+  lintCheck:
+    name: Static Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out repository
+        uses: actions/checkout@v4
+
+      - name: Static Analysis
+        run: ./gradlew lint
+        
+  pmd:
+    name: PMD
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out repository
+        uses: actions/checkout@v4
+
+      - name: PMD Check
+        run: ./gradlew pmd
